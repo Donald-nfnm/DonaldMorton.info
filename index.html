@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donald Morton — Public Record</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:     #1a1714;
+      --paper:   #f5f0e8;
+      --warm:    #ede8dc;
+      --rust:    #b84c2b;
+      --rust-lt: #d4694a;
+      --muted:   #7a7060;
+      --rule:    #c8bfaa;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Lora', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--paper);
+      text-decoration: none;
+      opacity: 0.85;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--paper);
+      text-decoration: none;
+      opacity: 0.65;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    /* ── HAMBURGER (mobile) ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--paper);
+      opacity: 0.8;
+      transition: all 0.3s;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 8vw, 14rem);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: clamp(4rem, 12vw, 9rem);
+      padding-bottom: 3rem;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      color: var(--ink);
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--rust);
+    }
+
+    .hero-desc {
+      max-width: 580px;
+      font-size: 1.15rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .hero-rule {
+      width: 60px;
+      height: 3px;
+      background: var(--rust);
+      margin-bottom: 2rem;
+    }
+
+    .hero-statement {
+      max-width: 620px;
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: clamp(1.5rem, 8vw, 14rem);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-scroll-hint::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--muted);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1.2rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    h2 em { font-style: italic; color: var(--rust); }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    p + p { margin-top: 1.2rem; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--warm); max-width: 100%; }
+    #about .inner { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 8vw, 14rem); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 1rem;
+    }
+
+    .about-pull {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--ink);
+      border-left: 3px solid var(--rust);
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ── VALUES ── */
+    .values-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .value-card {
+      border-top: 2px solid var(--rust);
+      padding-top: 1.2rem;
+    }
+
+    .value-number {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--rust);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── STATEMENTS ── */
+    #statements { background: var(--ink); color: var(--paper); max-width: 100%; }
+    #statements .inner { max-width: 1100px; margin: 0 auto; padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 8vw, 14rem); }
+    #statements .section-tag { color: var(--rust-lt); }
+    #statements h2 { color: var(--paper); }
+    #statements p, #statements .statement-meta { color: rgba(245, 240, 232, 0.7); }
+
+    .statement-entry {
+      border-top: 1px solid rgba(245, 240, 232, 0.15);
+      padding: 2rem 0;
+    }
+    .statement-entry:first-of-type { border-top: none; margin-top: 2rem; }
+
+    .statement-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+
+    .statement-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--paper);
+      margin-bottom: 0.6rem;
+    }
+
+    .statement-link {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rust-lt);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rust-lt);
+      padding-bottom: 2px;
+    }
+
+    /* ── INVOLVEMENT ── */
+    .involvement-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+
+    .involvement-table th {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.5rem 1rem 0.9rem 0;
+      border-bottom: 2px solid var(--rule);
+    }
+
+    .involvement-table td {
+      padding: 1.1rem 1rem 1.1rem 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .status-active {
+      background: #d4f0d4;
+      color: #2a6b2a;
+    }
+
+    .status-developing {
+      background: #fdefd8;
+      color: #7a4d10;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--warm); max-width: 100%; }
+    #projects .inner { max-width: 1100px; margin: 0 auto; padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 8vw, 14rem); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: var(--paper);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--rust);
+    }
+
+    .project-type {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.6rem;
+    }
+
+    .project-card h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    .project-card p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── CONTACT ── */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-note {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-methods {
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .contact-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 80px;
+    }
+
+    .contact-value {
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .contact-value a {
+      color: var(--rust);
+      text-decoration: none;
+    }
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(245, 240, 232, 0.4);
+      text-align: center;
+      padding: 2.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    footer span {
+      color: var(--rust-lt);
+    }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .about-grid,
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .involvement-table th:nth-child(3),
+      .involvement-table td:nth-child(3) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .involvement-table { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#home">Donald Morton</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#values">Values</a></li>
+      <li><a href="#statements">Statements</a></li>
+      <li><a href="#involvement">Involvement</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-eyebrow">Ward 3 Candidate — North Frontenac 2026</div>
+    <h1 class="hero-name">Donald<br><em>Morton</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">Candidate for Ward 3 Councillor, North Frontenac. Artist. Founder of NFNM.</p>
+    <p class="hero-statement">
+      I'm running for Ward 3 because this township needs a councillor who does the unglamorous work:
+      reads the material, asks the plain questions, and keeps decisions on a clean public record.
+      This site is that record — who I am, what I stand for, and every public statement I've made.
+      Not a brand. Not a pitch. The honest version.
+    </p>
+    <div class="hero-scroll-hint">Scroll to read</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <div id="about" style="padding: clamp(4rem,10vw,7rem) 0;">
+    <div class="inner">
+      <div class="section-tag">Who I Am</div>
+      <h2>About <em>Me</em></h2>
+      <div class="about-grid reveal">
+        <div>
+          <div class="about-pull">
+            "I'm not a journalist. I'm an artist who uses journalism to inspire change."
+          </div>
+          <p>
+            I'm from Port Perry, a small town in Durham Region. I went to Toronto Film School,
+            then spent years working across the industry — music videos, short films, features,
+            documentaries, indie productions, guerrilla videography. Whatever came up, I took it.
+            That's how you actually learn the full picture.
+          </p>
+          <p>
+            My core skill is directing. I see the bigger picture before other people do — how the
+            pieces fit, where the work is going, what it's actually saying. That instinct eventually
+            outgrew working on other people's projects, so I started my own production company.
+          </p>
+        </div>
+        <div>
+          <p>
+            I'm not someone who communicates easily in person. I'm introverted, and I've never been
+            comfortable speaking to a room. What I've always been able to do is make work that says
+            what I can't — and find the right medium to say it in.
+          </p>
+          <p>
+            Moving to North Frontenac was the turning point. Something sharpened out there. I understood,
+            for the first time clearly, what the work was actually for — and that I had the tools to do it.
+            That's when NFNM stopped being an idea and started becoming something real.
+          </p>
+          <p>
+            What's underneath all of it is something I think most people my age feel but don't always name:
+            we're not going to get what we were promised growing up. Every prime minister in my lifetime has
+            been removed from office rather than finishing their term. That's not just a political fact —
+            it's the kind of thing that needs an artistic response.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- VALUES -->
+  <section id="values">
+    <div class="section-tag">What I Stand On</div>
+    <h2>Values &amp; <em>Principles</em></h2>
+    <p style="max-width: 560px; color: var(--muted); margin-bottom: 1rem;">
+      These aren't aspirational. They're the standards I try to hold myself to — 
+      and the ones I want on record when my actions get tested against them.
+    </p>
+    <div class="values-list reveal">
+
+      <div class="value-card">
+        <div class="value-number">01</div>
+        <h3>Transparency Over Strategy</h3>
+        <p>I'd rather be honest about what I'm doing and why than be strategic about my image. This site is part of that commitment.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-number">02</div>
+        <h3>Art as Argument</h3>
+        <p>I believe creative work can make a political case better than a press release. Form is content. How something is said matters as much as what is said.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-number">03</div>
+        <h3>Clarity About Roles</h3>
+        <p>I wear more than one hat. I try to be clear about which one I'm wearing at any given time — and where the lines are between them.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-number">04</div>
+        <h3>One Law for All</h3>
+        <p>I believe in one law for all Canadians under one government. We don't strengthen a country by fracturing its identity into competing pieces — we weaken it.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-number">05</div>
+        <h3>Separation of Church and State</h3>
+        <p>Government is for all Canadians. Religion and culture belong in people's lives and communities — not in the House of Commons. Keeping them separate isn't an attack on faith. It's the foundation of a country that actually includes everyone.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-number">06</div>
+        <h3>Choose the Positive Path</h3>
+        <p>I believe in honesty, and I believe you have to choose the positive path even when the negative one feels easier or more satisfying. That's not always comfortable. It's also not optional — not if you want to be someone who can stand behind what they've done.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PUBLIC STATEMENTS -->
+  <div id="statements">
+    <div class="inner">
+      <div class="section-tag">On The Record</div>
+      <h2>Public <em>Statements</em></h2>
+      <p style="max-width: 580px;">
+        Official positions, clarifications, and longer-form remarks — dated and preserved. 
+        I don't bury corrections or revisions. If my thinking changes, I say so and say when.
+      </p>
+
+      <div class="statement-entry reveal">
+        <div class="statement-meta">March 8, 2026 — Land Use &amp; Governance</div>
+        <div class="statement-title">Crotch Lake, Whiteduck, and the Missing Public Discussion</div>
+        <p>Ontario's land-claim materials describe a recommended provincial park in the Crotch Lake area. North Frontenac Council has not had a clear public discussion about what that means for Township operations. It should.</p>
+        <a href="statements/crotch-lake-whiteduck.html" class="statement-link">Read full statement →</a>
+      </div>
+
+      <div class="statement-entry reveal">
+        <div class="statement-meta">March 4, 2026 — Public Statement</div>
+        <div class="statement-title">On South Frontenac's "Defend Local Autonomy" Package Vote</div>
+        <p>South Frontenac bundled three separate issues into one resolution and pressured neighbouring councils to endorse it as a package. That is a political game, and North Frontenac should reject it.</p>
+        <a href="statements/south-frontenac-bundling.html" class="statement-link">Read full statement →</a>
+      </div>
+
+      <div class="statement-entry reveal">
+        <div class="statement-meta">February 20, 2026 — Public Notice</div>
+        <div class="statement-title">THOW Delegation at Council — February 27</div>
+        <p>I hosted a delegation at Council to ask staff to update Township by-laws to properly recognize Tiny Houses on Wheels. The public was welcome to attend and speak.</p>
+        <a href="statements/thow-delegation.html" class="statement-link">Read full statement →</a>
+      </div>
+
+      <div class="statement-entry reveal">
+        <div class="statement-meta">February 10, 2026 — Housing Policy</div>
+        <div class="statement-title">Tiny Houses on Wheels: A Practical Fix</div>
+        <p>North Frontenac needs to update its by-law definition to properly recognize THOWs. The provincial definition already exists. The current situation is costing residents money and creating arbitrary enforcement. That needs to stop.</p>
+        <a href="statements/thow-definition.html" class="statement-link">Read full statement →</a>
+      </div>
+
+      <div class="statement-entry reveal">
+        <div class="statement-meta">February 3, 2026 — Platform Statement</div>
+        <div class="statement-title">My Platform</div>
+        <p>Roads, housing, local jobs, tourism, growth, long-term care, short-term rentals, and performance at Town Hall. Eight practical priorities for Ward 3.</p>
+        <a href="statements/platform.html" class="statement-link">Read full statement →</a>
+      </div>
+
+      <div class="statement-entry reveal">
+        <div class="statement-meta">January 28, 2026 — Campaign Statement</div>
+        <div class="statement-title">Why I'm Running</div>
+        <p>I'm 38 years old and running for Ward 3 councillor in North Frontenac. This is why — and what I intend to do about it.</p>
+        <a href="statements/why-i-am-running.html" class="statement-link">Read full statement →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CURRENT INVOLVEMENT -->
+  <section id="involvement">
+    <div class="section-tag">Standing Disclosure</div>
+    <h2>Current <em>Involvement</em></h2>
+    <p style="max-width: 640px; color: var(--muted); margin-bottom: 0.5rem;">
+      A transparent record of the projects, roles, and public efforts I'm actively engaged with. 
+      Updated as things change. If you want to know where I stand — this is the page.
+    </p>
+
+    <table class="involvement-table reveal">
+      <thead>
+        <tr>
+          <th>Project / Role</th>
+          <th>What It Is</th>
+          <th>My Role</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Ward 3 Councillor Candidate</strong></td>
+          <td>Running for North Frontenac Council, Ward 3, in the 2026 municipal election.</td>
+          <td>Candidate</td>
+          <td><span class="status-badge status-active">Active</span></td>
+        </tr>
+        <tr>
+          <td><strong>NFNM</strong></td>
+          <td>Political art project and watchdog reporting operation. An artistic response to civic and political conditions in North Frontenac and beyond.</td>
+          <td>Founder / Director</td>
+          <td><span class="status-badge status-active">Active</span></td>
+        </tr>
+        <tr>
+          <td><strong>Film &amp; Production</strong></td>
+          <td>Independent production company. Directing, videography, and producing across music videos, short films, documentaries, and features.</td>
+          <td>Director / Owner</td>
+          <td><span class="status-badge status-active">Active</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <div id="projects">
+    <div class="inner">
+      <div class="section-tag">Work &amp; Making</div>
+      <h2>Projects</h2>
+      <p style="max-width: 560px; color: var(--muted);">
+        Things I'm building, contributing to, or have built. 
+        NFNM sits here as one project among several — not the whole picture.
+      </p>
+
+      <div class="projects-grid reveal">
+
+        <div class="project-card">
+          <div class="project-type">Political Art &amp; Watchdog Reporting</div>
+          <h3>NFNM</h3>
+          <p>North Frontenac News &amp; Media — a political art project that uses journalism to document, question, and respond to civic and political conditions in North Frontenac. Not a news outlet in the conventional sense. An artistic argument made in public, on the record.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">Housing &amp; Policy</div>
+          <h3>Tiny Homes Initiative</h3>
+          <p>A push to update North Frontenac's by-laws to properly recognize Tiny Houses on Wheels as a legal, affordable housing option. Includes a delegation to Council in February 2026 and ongoing advocacy for a lot-rental program that fits rural reality.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">Civic Engagement</div>
+          <h3>Ward 3 Campaign</h3>
+          <p>Running for Ward 3 Councillor in North Frontenac's 2026 municipal election. Built on a year of documented involvement in Council proceedings — attending meetings, reviewing agendas, asking questions on the record, and reporting on major issues facing the township.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">Independent Business</div>
+          <h3>Morton's Cider</h3>
+          <p>A DIY apple cidery. Local, small-scale, built by hand. More details to come.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">Media &amp; Watchdog Reporting</div>
+          <h3>NFNM Coverage</h3>
+          <p>Investigations, reporting, and watchdog work on North Frontenac civic and political matters live at NFNM — that's its own thing. This site is about me. Visit <a href="https://nfnm.tv" target="_blank" style="color: var(--rust); text-decoration: none;">nfnm.tv</a> for that work.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div>
+        <div class="section-tag">Get In Touch</div>
+        <h2>Contact</h2>
+        <p>
+          I'm reachable. I try to respond to genuine inquiries — press, collaborators, 
+          community members, critics. If you have a real question, I'll give you a real answer.
+        </p>
+        <p class="contact-note">
+          For media inquiries specifically, please identify yourself and your outlet 
+          in your first message. I'll respond faster.
+        </p>
+      </div>
+      <div class="contact-methods">
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <span class="contact-value"><a href="mailto:contact@donaldmorton.info">contact@donaldmorton.info</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Facebook</span>
+          <span class="contact-value"><a href="https://www.facebook.com/NFDonaldMorton/" target="_blank">facebook.com/NFDonaldMorton</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">NFNM</span>
+          <span class="contact-value"><a href="https://nfnm.tv" target="_blank">nfnm.tv</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Location</span>
+          <span class="contact-value">North Frontenac, Ontario</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Donald Morton</span> — donaldmorton.info — Public Record &amp; Personal Site<br>
+    <span style="opacity:0.5; font-size: 0.6rem; margin-top: 0.5rem; display: block;">
+      This site is a transparency-first personal record. Last updated March 2026.
+    </span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Mobile menu
+    let menuOpen = false;
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      const links = document.querySelector('.nav-links');
+      if (menuOpen) {
+        links.style.display = 'flex';
+        links.style.flexDirection = 'column';
+        links.style.position = 'absolute';
+        links.style.top = '56px';
+        links.style.right = '0';
+        links.style.background = '#1a1714';
+        links.style.padding = '1.5rem 2rem';
+        links.style.gap = '1.2rem';
+        links.style.minWidth = '200px';
+      } else {
+        links.style.display = 'none';
+      }
+    }
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        document.querySelector('.nav-links').style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>

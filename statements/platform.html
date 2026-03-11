@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Platform — Donald Morton</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#1a1714; --paper:#f5f0e8; --warm:#ede8dc; --rust:#b84c2b; --rust-lt:#d4694a; --muted:#7a7060; --rule:#c8bfaa; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--paper); color: var(--ink); font-family: 'Lora', Georgia, serif; font-size: 18px; line-height: 1.75; overflow-x: hidden; }
+    nav { position: sticky; top: 0; z-index: 500; background: var(--ink); display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(1.5rem, 5vw, 4rem); height: 56px; }
+    .nav-logo { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); text-decoration: none; opacity: 0.85; }
+    .nav-back { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
+    .nav-back:hover { opacity: 1; }
+    .statement-wrap { max-width: 720px; margin: 0 auto; padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 2rem); }
+    .statement-tag { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1rem; }
+    .statement-date { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 2rem; }
+    h1 em { font-style: italic; color: var(--rust); }
+    .rule { width: 60px; height: 3px; background: var(--rust); margin-bottom: 2.5rem; }
+    p { margin-bottom: 1.4rem; }
+    .platform-item { border-top: 2px solid var(--rust); padding-top: 1.2rem; margin-bottom: 2rem; }
+    .platform-number { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--rust); margin-bottom: 0.4rem; }
+    .platform-item h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.7rem; }
+    .signature { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--rule); font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); }
+    footer { background: var(--ink); color: rgba(245,240,232,0.4); text-align: center; padding: 2rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6rem; }
+    footer span { color: var(--rust-lt); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="../index.html">Donald Morton</a>
+    <a class="nav-back" href="../index.html#statements">← Statements</a>
+  </nav>
+
+  <div class="statement-wrap">
+    <div class="statement-tag">Platform Statement</div>
+    <div class="statement-date">February 3, 2026 — Ward 3 Candidacy</div>
+    <h1>My <em>Platform</em></h1>
+    <div class="rule"></div>
+
+    <p>My platform is practical and local.</p>
+
+    <div class="platform-item">
+      <div class="platform-number">01</div>
+      <h2>Roads</h2>
+      <p>I want a real budget reform that gets our road rehab done in 2 years, not 10. The concept is simple: use reserves as a participation guarantee to secure financing, then rebuild and rehabilitate every priority road to a solid 70–100% standard on a clear schedule.</p>
+    </div>
+
+    <div class="platform-item">
+      <div class="platform-number">02</div>
+      <h2>Housing That Fits Rural Life</h2>
+      <p>I will support a Tiny House lot-rental program so local people can live here affordably without waiting a decade for "big" solutions.</p>
+    </div>
+
+    <div class="platform-item">
+      <div class="platform-number">03</div>
+      <h2>Local Jobs and Local Commerce</h2>
+      <p>I will push for a commercial pad in Plevna with three warehouse sizes for rent, paired with an indoor farmers market style space where local producers and artists can set up year-round.</p>
+    </div>
+
+    <div class="platform-item">
+      <div class="platform-number">04</div>
+      <h2>Tourism That Doesn't Wreck Our Housing Supply</h2>
+      <p>I support expanding rentable campsites through parklands, and assisting with the idea of building a winter camping cabin operation that competes with short-term rentals without turning family homes into investment inventory.</p>
+    </div>
+
+    <div class="platform-item">
+      <div class="platform-number">05</div>
+      <h2>Honest Growth</h2>
+      <p>We need a serious discussion about land acquisition along main roads to create building lots where it actually makes sense.</p>
+    </div>
+
+    <div class="platform-item">
+      <div class="platform-number">06</div>
+      <h2>Services People Can Count On</h2>
+      <p>North Frontenac needs a real plan for long-term care, and I support a public gym in Plevna as part of basic community infrastructure.</p>
+    </div>
+
+    <div class="platform-item">
+      <div class="platform-number">07</div>
+      <h2>Short-Term Rentals</h2>
+      <p>This has to stay local, not kicked up to the County. I will work toward a fair balance that respects residents and responsible operators.</p>
+    </div>
+
+    <div class="platform-item">
+      <div class="platform-number">08</div>
+      <h2>Performance at Town Hall</h2>
+      <p>I won't pretend everything is fine. Some roles need to be reassigned, some people need to go, and some positions need to be recruited so the Township runs better.</p>
+    </div>
+
+    <p>Finally, I will stand firm on the principles that keep small-town democracy healthy: freedom of speech, land rights, access to information, and basic respect.</p>
+
+    <p>If you want a council that fixes things instead of managing decline, that's what I'm running for.</p>
+
+    <div class="signature">
+      Donald Morton<br>
+      Candidate, Ward 3 — North Frontenac (2026)
+    </div>
+  </div>
+
+  <footer>
+    <span>Donald Morton</span> — donaldmorton.info — Public Record
+  </footer>
+</body>
+</html>
