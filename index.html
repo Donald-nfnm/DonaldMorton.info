@@ -866,11 +866,10 @@
       }
     }
 
-    // Close menu on link click
+    // Keep menu open on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
-        menuOpen = false;
-        document.querySelector('.nav-links').style.display = 'none';
+        // intentionally left open
       });
     });
   </script>
