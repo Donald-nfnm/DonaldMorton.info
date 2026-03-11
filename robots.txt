@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://donaldmorton.info/sitemap.xml
